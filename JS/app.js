@@ -1,3 +1,6 @@
+//import functions and arrays from ./phrases.js
+
+
 let qwerty = document.querySelector('#qwerty');
 let phrase = document.getElementById('phrase');
 let missed = 0;
@@ -8,8 +11,6 @@ btn_reset.addEventListener('click', () => {
 
     overlay.style.display = "none";
 });
-
-console.log(qwerty);
 
 // qwerty.addEventListener('click', (e) => {
 //     if () {
