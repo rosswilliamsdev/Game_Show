@@ -6,10 +6,14 @@ let phrases = [
     'marathon not a sprint'
 ];
 
+
 function getRandomPhrases(arr) {
     //choose a phrase from the phrases array
-    //split that phrase into a new array of characters
+    let randomPhrase = phrases[Math.floor(Math.random()*phrases.length)];
+    //split that phrase into a new array of characters 
+    let charactersArr = randomPhrase.split('');
     //return the new array of characters
-}
+    return charactersArr;
+};
 
-getRandomPhrases(phrases);
+console.log(getRandomPhrases(phrases));
