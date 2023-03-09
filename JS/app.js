@@ -30,12 +30,12 @@ function addPhraseToDisplay(arr) {
         // for each character in the array, you’ll create a list item
         let newLi = document.createElement('li');
         // put the character inside of the list item
-        newLi = newLi.textContent(arr[i]);
+        newLi.textContent = arr[i];
         // and append that list item to the #phrase ul in your HTML
         phrase.appendChild(newLi);
         // If the character in the array is a letter and not a space, the function should add the class “letter” to the list item
         if (arr[i] != " ") {
-            newLi.className("letter");
+            newLi.className = "letter";
         };
     };
 };
@@ -72,13 +72,13 @@ btn_reset.addEventListener('click', () => {
     overlay.style.display = "none";
 });
 
-
-
-
-// // Use event delegation to listen only to button events from the keyboard
-// qwerty.addEventListener('click', (e) => {
-//     let target = e.target;
-//     // When a player chooses a letter, add the “chosen” class to that button so the same letter can’t be chosen twice. 
-//     target.className = "chosen";
-//     // Note that button elements have an attribute you can set called “disabled” that when set to true will not respond to user clicks
-// });
+// Use event delegation to listen only to button events from the keyboard
+qwerty.addEventListener('click', (e) => {
+    let target = e.target;
+    // When a player chooses a letter, add the “chosen” class to that button so the same letter can’t be chosen twice. 
+    target.className = "chosen";
+    // Note that button elements have an attribute you can set called “disabled” that when set to true will not respond to user clicks
+    target.setAttribute('disabled', true);
+    // Pass the button to the checkLetter function, and store the letter returned inside of a variable called letterFound
+    let letterFound = checkLetter(target);
+});
