@@ -34,7 +34,7 @@ function addPhraseToDisplay(arr) {
         // and append that list item to the #phrase ul in your HTML
         phrase.appendChild(newLi);
         // If the character in the array is a letter and not a space, the function should add the class “letter” to the list item
-        if (arr[i] != " ") {
+        if (arr[i] !== " ") {
             newLi.className = "letter";
         };
     };
@@ -48,7 +48,7 @@ addPhraseToDisplay(phraseArray);
 function checkLetter(button) {
 
     // Get all of the elements with a class of “letter”
-    let letters = document.querySelectorAll('.letter');
+    let letters = document.getElementsByClassName('.letter');
     // The function should loop over the letters
     for (let i = 0; i < letters.length; i++) {
         //and check if they match the letter in the button the player has chosen.
@@ -58,6 +58,7 @@ function checkLetter(button) {
             // If there’s a match, the function should add the “show” class to the list item containing that letter
             matchingLetter.className = 'show';
             // and return that letter
+            
             return matchingLetter;
         } else {
             // If a match wasn’t found, the function should return null.
