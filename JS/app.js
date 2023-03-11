@@ -42,17 +42,21 @@ function addPhraseToDisplay(arr) {
 
 let phraseArray = getRandomPhrases(phrases);
 addPhraseToDisplay(phraseArray);
-
 // The checkLetter function will be used inside of the event listener you’ll write in the next step.
     // This function should have one parameter: the button the player has clicked when guessing a letter.
 function checkLetter(button) {
 
     // Get all of the elements with a class of “letter”
-    let letters = document.getElementsByClassName('.letter');
+    let letters = document.getElementsByClassName('letter');
     // The function should loop over the letters
     for (let i = 0; i < letters.length; i++) {
         //and check if they match the letter in the button the player has chosen.
-        if (button.textContent === letters[i]) {
+        
+        // console.log("button", button.textContent);
+        // console.log("letters", letters[i]);
+        let letterType = typeof(letters[i].textContent);
+        console.log(letterType);
+        if (button.textContent === letters[i].textContent) {
             // store the matching letter inside of a variable
             let matchingLetter = letters[i];
             // If there’s a match, the function should add the “show” class to the list item containing that letter
