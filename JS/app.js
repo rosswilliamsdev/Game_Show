@@ -52,11 +52,6 @@ function checkLetter(button) {
     // The function should loop over the letters
     for (let i = 0; i < letters.length; i++) {
         //and check if they match the letter in the button the player has chosen.
-        
-        // console.log("button", button.textContent);
-        // console.log("letters", letters[i]);
-        let letterType = typeof(letters[i].textContent);
-        console.log(letterType);
         if (button.textContent === letters[i].textContent) {
             // store the matching letter inside of a variable
             matchingLetter = letters[i];
@@ -83,8 +78,14 @@ qwerty.addEventListener('click', (e) => {
     target.setAttribute('disabled', true);
     // Pass the button to the checkLetter function, and store the letter returned inside of a variable called letterFound
     let letterFound = checkLetter(target);
+    let oneTry = document.querySelector('.tries');
     // After checkLetter is called, write a statement to check the value of the letterFound variable.
-    insert code here!
     // If the value is null, remove one of the tries from the scoreboard.
-    if (letterFound === null)
+    if (letterFound === null) {
+        oneTry.remove();
+        // increase the missed count by 1
+        missed++;
+        //Replace the heart with a lost heart
+        oneTry.innerHTML = "<img src='images/lostHeart.png'>"
+    }
 });
