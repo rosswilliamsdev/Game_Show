@@ -42,12 +42,13 @@ function addPhraseToDisplay(arr) {
 
 let phraseArray = getRandomPhrases(phrases);
 addPhraseToDisplay(phraseArray);
+
 // The checkLetter function will be used inside of the event listener you’ll write in the next step.
     // This function should have one parameter: the button the player has clicked when guessing a letter.
 function checkLetter(button) {
-
     // Get all of the elements with a class of “letter”
     let letters = document.getElementsByClassName('letter');
+    let matchingLetter = null;
     // The function should loop over the letters
     for (let i = 0; i < letters.length; i++) {
         //and check if they match the letter in the button the player has chosen.
@@ -58,17 +59,13 @@ function checkLetter(button) {
         console.log(letterType);
         if (button.textContent === letters[i].textContent) {
             // store the matching letter inside of a variable
-            let matchingLetter = letters[i];
+            matchingLetter = letters[i];
             // If there’s a match, the function should add the “show” class to the list item containing that letter
-            matchingLetter.className = 'show';
-            // and return that letter
-            
-            return matchingLetter;
-        } else {
-            // If a match wasn’t found, the function should return null.
-            return null;
-        }
+            matchingLetter.classList.add('show');
+        } 
     }
+    // and return that letter
+    return matchingLetter;
 };
 
 // Attach an event listener to the “Start Game” button to hide the start screen overlay
@@ -81,9 +78,13 @@ btn_reset.addEventListener('click', () => {
 qwerty.addEventListener('click', (e) => {
     let target = e.target;
     // When a player chooses a letter, add the “chosen” class to that button so the same letter can’t be chosen twice. 
-    target.className = "chosen";
+    target.classList.add('chosen');
     // Note that button elements have an attribute you can set called “disabled” that when set to true will not respond to user clicks
     target.setAttribute('disabled', true);
     // Pass the button to the checkLetter function, and store the letter returned inside of a variable called letterFound
     let letterFound = checkLetter(target);
+    // After checkLetter is called, write a statement to check the value of the letterFound variable.
+    insert code here!
+    // If the value is null, remove one of the tries from the scoreboard.
+    if (letterFound === null)
 });
