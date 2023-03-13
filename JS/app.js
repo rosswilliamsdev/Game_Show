@@ -5,6 +5,9 @@ let phrase = document.getElementById('phrase');
 // Create a missed variable, initialized to 0 to keep track of the number of guesses the player has missed
 let missed = 0;
 let btn_reset = document.querySelector('.btn__reset');
+let overlay = document.getElementById('overlay');
+// Get all of the elements with a class of “letter”
+let letters = document.getElementsByClassName('letter');
 // Create a phrases array that contains at least 5 different phrases as strings
 let phrases = [
     "superficial commit",
@@ -46,8 +49,6 @@ addPhraseToDisplay(phraseArray);
 // The checkLetter function will be used inside of the event listener you’ll write in the next step.
     // This function should have one parameter: the button the player has clicked when guessing a letter.
 function checkLetter(button) {
-    // Get all of the elements with a class of “letter”
-    let letters = document.getElementsByClassName('letter');
     let matchingLetter = null;
     // The function should loop over the letters
     for (let i = 0; i < letters.length; i++) {
@@ -68,6 +69,25 @@ btn_reset.addEventListener('click', () => {
     let overlay = document.getElementById('overlay');
     overlay.style.display = "none";
 });
+
+// Each time the player guesses a letter, this function will check whether the game has been won or lost.
+function checkWin() {
+    // check if the number of letters with class “show” is equal to the number of letters with class “letters”
+    let showClass = document.querySelectorAll('.show');
+
+    if (showClass.length === letters.length) {
+        overlay.style.display = 'block';
+        overlay.className = 'win';
+        overlay.innerHTML = `<h1>Congratulations!</h1><h3>You won the game!</h3>`;
+    }
+    // if the number of misses is equal to or greater than 5, show the overlay screen with the “lose” class and appropriate text  
+    else if (missed >= 5){
+        overlay.style.display = 'block';
+        overlay.className = 'lose';
+        overlay.innerHTML = `<h1>You lost!</h1><h3>It's just a game though!</h3>`;
+    }
+}
+
 
 // Use event delegation to listen only to button events from the keyboard
 qwerty.addEventListener('click', (e) => {
@@ -90,4 +110,5 @@ qwerty.addEventListener('click', (e) => {
         oneTry.classList.remove('tries');
         oneTry.classList.add('missed');
     }
+    checkWin();
 });
