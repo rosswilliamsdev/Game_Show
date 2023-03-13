@@ -82,10 +82,12 @@ qwerty.addEventListener('click', (e) => {
     // After checkLetter is called, write a statement to check the value of the letterFound variable.
     // If the value is null, remove one of the tries from the scoreboard.
     if (letterFound === null) {
-        oneTry.remove();
         // increase the missed count by 1
         missed++;
         //Replace the heart with a lost heart
-        oneTry.innerHTML = "<img src='images/lostHeart.png'>"
+        oneTry.setAttribute('src', 'images/lostHeart.png');
+        // My idea to change the class name so oneTry querySelector always selects a different liveHeart after misses
+        oneTry.classList.remove('tries');
+        oneTry.classList.add('missed');
     }
 });
