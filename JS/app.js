@@ -4,6 +4,7 @@ let missed = 0;
 let btn_reset = document.querySelector('.btn__reset');
 let overlay = document.getElementById('overlay');
 let letters = document.getElementsByClassName('letter');
+let chosen = document.querySelectorAll('.chosen');
 let phrases = [
     "superficial commit",
     "burnout",
@@ -44,20 +45,18 @@ function checkLetter(button) {
 };
 
 btn_reset.addEventListener('click', () => {
-    let overlay = document.getElementById('overlay');
-
     //button needs to change overlay class from 'win'/'lose' back to 'start'
-    //need to reset all changes: put missed to 0, new phrase, un-select letters, possibly more
-
-
-    //this does not work! need to take out the conditional, 
+    //need to reset all changes: put missed to 0, new phrase, un-select letters, possibly more?
     if (overlay.className === 'start'){
     overlay.style.display = "none";
-    } else if (overlay.className === 'win' || 
-    overlay.className === 'lose') {
+    console.log('We reached the if statement')
+    } else {
         overlay.className = 'start';
-        overlay.style.display = "none";
-    };
+        missed = 0;
+        chosen.classList.remove('chosen');
+        addPhraseToDisplay(phraseArray);
+        console.log('We reached the else statement');
+    }
 });
 
 function checkWin() {
