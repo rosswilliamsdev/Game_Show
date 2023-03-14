@@ -45,7 +45,19 @@ function checkLetter(button) {
 
 btn_reset.addEventListener('click', () => {
     let overlay = document.getElementById('overlay');
+
+    //button needs to change overlay class from 'win'/'lose' back to 'start'
+    //need to reset all changes: put missed to 0, new phrase, un-select letters, possibly more
+
+
+    //this does not work! need to take out the conditional, 
+    if (overlay.className === 'start'){
     overlay.style.display = "none";
+    } else if (overlay.className === 'win' || 
+    overlay.className === 'lose') {
+        overlay.className = 'start';
+        overlay.style.display = "none";
+    };
 });
 
 function checkWin() {
@@ -54,12 +66,18 @@ function checkWin() {
     if (showClass.length === letters.length) {
         overlay.style.display = 'block';
         overlay.className = 'win';
-        overlay.innerHTML = `<h1>Congratulations!</h1><h3>You won the game!</h3>`;
+        overlay.innerHTML = `
+        <h1>Congratulations!</h1>
+        <h3>You won the game!</h3>
+        <a class='btn__reset'>Reset</a>`;
     }
     else if (missed >= 5){
         overlay.style.display = 'block';
         overlay.className = 'lose';
-        overlay.innerHTML = `<h1>You lost!</h1><h3>It's just a game though!</h3>`;
+        overlay.innerHTML = `
+        <h1>You lost!</h1>
+        <h3>It's just a game though!</h3>
+        <a class='btn__reset'>Reset</a>`;
     }
 }
 
