@@ -5,7 +5,6 @@ let btn_reset = document.querySelector('.btn__reset');
 let overlay = document.getElementById('overlay');
 let letters = document.getElementsByClassName('letter');
 let chosen = document.querySelectorAll('.chosen');
-let oneTry = document.querySelector('.tries');
 let phrases = [
     "superficial commit",
     "burnout",
@@ -57,11 +56,12 @@ btn_reset.addEventListener('click', () => {
         chosen.classList.remove('chosen');
         addPhraseToDisplay(phraseArray);
         console.log('We reached the else statement');
+        let allTries = document.querySelectorAll('.tries');
 
-            for (let i= 0; i < oneTry.length; i++) {
-                oneTry[i].setAttribute('src', 'images/liveHeart.png');
-                oneTry[i].classList.remove('missed');
-                oneTry[i].classList.add('tries');
+            for (let i= 0; i < allTries.length; i++) {
+                allTries[i].setAttribute('src', 'images/liveHeart.png');
+                allTries[i].classList.remove('missed');
+                allTries[i].classList.add('tries');
                 console.log('The for loop is looping');
         }
     }
@@ -94,6 +94,7 @@ qwerty.addEventListener('click', (e) => {
     if (target.tagName === 'BUTTON') {
     target.classList.add('chosen');
     target.setAttribute('disabled', true);
+    let oneTry = document.querySelector('.tries');
     let letterFound = checkLetter(target);
 
     if (letterFound === null) {
