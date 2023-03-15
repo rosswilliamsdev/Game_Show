@@ -4,7 +4,6 @@ let missed = 0;
 let btn_reset = document.querySelector('.btn__reset');
 let overlay = document.getElementById('overlay');
 let letters = document.getElementsByClassName('letter');
-let chosen = document.querySelectorAll('.chosen');
 let phrases = [
     "superficial commit",
     "burnout",
@@ -37,6 +36,7 @@ function checkLetter(button) {
     let matchingLetter = null;
     for (let i = 0; i < letters.length; i++) {
         if (button.textContent === letters[i].textContent) {
+            //if a guess is correct, show it in the phrase display
             matchingLetter = letters[i];
             matchingLetter.classList.add('show');
         } 
@@ -45,25 +45,31 @@ function checkLetter(button) {
 };
 
 btn_reset.addEventListener('click', () => {
-    //button needs to change overlay class from 'win'/'lose' back to 'start'
-    //need to reset all changes: put missed to 0, new phrase, un-select letters, possibly more?
+    //This if statement is for the inital landing page, before the user has played the game at all
     if (overlay.className === 'start'){
     overlay.style.display = "none";
-    console.log('We reached the if statement')
     } else {
+        //Brings you back to landing page from endgame
         overlay.className = 'start';
-        missed = 0;
-        chosen.classList.remove('chosen');
+        //Reset random phrase
+        phrase.innerHTML = '';
         addPhraseToDisplay(phraseArray);
-        console.log('We reached the else statement');
-        let allTries = document.querySelectorAll('.tries');
-
-            for (let i= 0; i < allTries.length; i++) {
-                allTries[i].setAttribute('src', 'images/liveHeart.png');
-                allTries[i].classList.remove('missed');
-                allTries[i].classList.add('tries');
-                console.log('The for loop is looping');
+        // NON-FUNCTIONING Make used buttons clickable again
+        let chosen = document.getElementsByClassName('chosen');
+        for (let i = 0; i<chosen.length; i++) {
+            chosen[i].disabled = false;
+            chosen[i].classList.remove('chosen');
         }
+        //Reset hearts after endgame
+        let allTries = document.querySelectorAll('.tries');
+        let allMisses = document.querySelectorAll('.missed');
+        for (i = 0; i<allMisses.length; i++){
+            allMisses[i].src = 'images/liveHeart.png';
+            allMisses[i].classList.remove('missed');
+            allMisses[i].classList.add('tries');
+            }
+        //Reset missed
+        missed = 0;
     }
 });
 
@@ -73,33 +79,33 @@ function checkWin() {
     if (showClass.length === letters.length) {
         overlay.style.display = 'block';
         overlay.className = 'win';
-        overlay.innerHTML = `
-        <h1>Congratulations!</h1>
-        <h3>You won the game!</h3>
-        <a class='btn__reset'>Reset</a>`;
+        overlay.firstChild.innerHTML = `
+        Congratulations!`;
     }
     else if (missed >= 5){
         overlay.style.display = 'block';
         overlay.className = 'lose';
-        overlay.innerHTML = `
-        <h1>You lost!</h1>
-        <h3>It's just a game though!</h3>
-        <a class='btn__reset'>Reset</a>`;
+        overlay.firstChild.innerHTML = `
+        You lost, but that's alright!`;
     }
 }
 
 
 qwerty.addEventListener('click', (e) => {
     let target = e.target;
+
     if (target.tagName === 'BUTTON') {
+    //Makes clicked buttons unclickable
     target.classList.add('chosen');
     target.setAttribute('disabled', true);
+
     let oneTry = document.querySelector('.tries');
     let letterFound = checkLetter(target);
 
     if (letterFound === null) {
+        //Ticks a heart off each time user misses a guess
         missed++;
-        oneTry.setAttribute('src', 'images/lostHeart.png');
+        oneTry.src = 'images/lostHeart.png';
         oneTry.classList.remove('tries');
         oneTry.classList.add('missed');
     }
