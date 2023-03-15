@@ -54,13 +54,14 @@ btn_reset.addEventListener('click', () => {
         //Reset random phrase
         phrase.innerHTML = '';
         addPhraseToDisplay(phraseArray);
-        // UNFINISHED Make used buttons clickable again
+        console.log(phrase);
+        //Make used buttons clickable again
         let chosen = document.getElementsByClassName('chosen');
-        for (i in chosen) {
-            console.log('chosen loop')
-            chosen[i].disabled = false;
-            chosen[i].classList.remove('chosen');
-        }
+        chosenArray = Array.from(chosen);
+        chosenArray.forEach(element => {
+            element.disabled = false;
+            element.classList.remove('chosen');
+        });
         //Reset hearts after endgame
         let allTries = document.querySelectorAll('.tries');
         let allMisses = document.querySelectorAll('.missed');
