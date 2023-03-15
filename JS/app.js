@@ -54,9 +54,10 @@ btn_reset.addEventListener('click', () => {
         //Reset random phrase
         phrase.innerHTML = '';
         addPhraseToDisplay(phraseArray);
-        // NON-FUNCTIONING Make used buttons clickable again
+        // UNFINISHED Make used buttons clickable again
         let chosen = document.getElementsByClassName('chosen');
-        for (let i = 0; i<chosen.length; i++) {
+        for (let i = 0; i < chosen.length; i++) {
+            console.log('chosen loop')
             chosen[i].disabled = false;
             chosen[i].classList.remove('chosen');
         }
