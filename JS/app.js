@@ -56,7 +56,7 @@ btn_reset.addEventListener('click', () => {
         addPhraseToDisplay(phraseArray);
         // UNFINISHED Make used buttons clickable again
         let chosen = document.getElementsByClassName('chosen');
-        for (let i = 0; i < chosen.length; i++) {
+        for (i in chosen) {
             console.log('chosen loop')
             chosen[i].disabled = false;
             chosen[i].classList.remove('chosen');
