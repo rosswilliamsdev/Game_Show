@@ -53,8 +53,7 @@ btn_reset.addEventListener('click', () => {
         overlay.className = 'start';
         //Reset random phrase
         phrase.innerHTML = '';
-        addPhraseToDisplay(phraseArray);
-        console.log(phrase);
+        addPhraseToDisplay(getRandomPhrases(phrases));
         //Make used buttons clickable again
         let chosen = document.getElementsByClassName('chosen');
         chosenArray = Array.from(chosen);

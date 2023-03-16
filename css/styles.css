@@ -97,7 +97,7 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
-  transition: width .5s, height .5s;
+  transition: width .4s, height .4s;
 }
 
 .show:hover,
