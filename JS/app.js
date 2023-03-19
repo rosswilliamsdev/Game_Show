@@ -42,6 +42,7 @@ function checkLetter(button) {
             matchingLetter = letters[i];
             matchingLetter.classList.add('show');
             //add a class to add transition
+            matchingLetter.style.transform = 'rotate(360deg)';
         } 
     }
     return matchingLetter;
@@ -52,11 +53,9 @@ btn_reset.addEventListener('click', () => {
     if (overlay.className === 'start'){
     overlay.style.display = "none";
     } else {
-        //Brings you back to landing page from endgame
-        overlay.className = 'start';
-        overlay.children[0].textContent = 'Start Game';
+        //Brings you to new game from endgame
+        overlay.style.display = "none";
         //Reset random phrase
-        phrase.innerHTML = '';
         addPhraseToDisplay(getRandomPhrases(phrases));
         //Make used buttons clickable again
         let chosen = document.getElementsByClassName('chosen');
@@ -64,9 +63,9 @@ btn_reset.addEventListener('click', () => {
         chosenArray.forEach(element => {
             element.disabled = false;
             element.classList.remove('chosen');
+            console.log('check chosen list')
         });
         //Reset hearts after endgame
-        let allTries = document.querySelectorAll('.tries');
         let allMisses = document.querySelectorAll('.missed');
         for (i = 0; i<allMisses.length; i++){
             allMisses[i].src = 'images/liveHeart.png';
@@ -82,11 +81,13 @@ function checkWin() {
     let showClass = document.querySelectorAll('.show');
 
     if (showClass.length === letters.length) {
+        phrase.innerHTML = '';
         overlay.style.display = 'block';
         overlay.className = 'win';
         overlay.children[0].textContent = "Congrats!";
     }
     else if (missed >= 5){
+        phrase.innerHTML = '';
         overlay.style.display = 'block';
         overlay.className = 'lose';
         overlay.children[0].textContent = "Good try!";
