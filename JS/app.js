@@ -5,11 +5,11 @@ let btn_reset = document.querySelector('.btn__reset');
 let overlay = document.getElementById('overlay');
 let letters = document.getElementsByClassName('letter');
 let phrases = [
-    "superficial commit",
+    "commit",
     "burnout",
     "self taught",
     'programmer',
-    'marathon not a sprint'
+    'marathon'
 ];
 
 function getRandomPhrases(arr) {
@@ -25,6 +25,8 @@ function addPhraseToDisplay(arr) {
         phrase.appendChild(newLi);
         if (arr[i] !== " ") {
             newLi.className = "letter";
+        } else {
+            newLi.className = "space";
         };
     };
 };
@@ -39,6 +41,7 @@ function checkLetter(button) {
             //if a guess is correct, show it in the phrase display
             matchingLetter = letters[i];
             matchingLetter.classList.add('show');
+            //add a class to add transition
         } 
     }
     return matchingLetter;
@@ -51,6 +54,7 @@ btn_reset.addEventListener('click', () => {
     } else {
         //Brings you back to landing page from endgame
         overlay.className = 'start';
+        overlay.children[0].textContent = 'Start Game';
         //Reset random phrase
         phrase.innerHTML = '';
         addPhraseToDisplay(getRandomPhrases(phrases));
@@ -80,14 +84,12 @@ function checkWin() {
     if (showClass.length === letters.length) {
         overlay.style.display = 'block';
         overlay.className = 'win';
-        overlay.firstChild.innerHTML = `
-        Congratulations!`;
+        overlay.children[0].textContent = "Congrats!";
     }
     else if (missed >= 5){
         overlay.style.display = 'block';
         overlay.className = 'lose';
-        overlay.firstChild.innerHTML = `
-        You lost, but that's alright!`;
+        overlay.children[0].textContent = "Good try!";
     }
 }
 
