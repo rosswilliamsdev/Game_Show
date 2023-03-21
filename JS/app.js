@@ -6,7 +6,7 @@ let overlay = document.getElementById('overlay');
 let letters = document.getElementsByClassName('letter');
 let phrases = [
     "commit",
-    "burnout",
+    "javascript",
     "self taught",
     'programmer',
     'marathon'
