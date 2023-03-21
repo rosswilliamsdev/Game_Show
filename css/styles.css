@@ -130,7 +130,9 @@ button {
 
 /* Overlay */
 
-#overlay {
+#overlay,
+.win,
+.lose {
   display: flex;
   flex-direction: column;
   position: fixed;

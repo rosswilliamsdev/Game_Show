@@ -82,13 +82,13 @@ function checkWin() {
 
     if (showClass.length === letters.length) {
         phrase.innerHTML = '';
-        overlay.style.display = 'block';
+        overlay.style.display = 'flex';
         overlay.className = 'win';
         overlay.children[0].textContent = "Congrats!";
     }
     else if (missed >= 5){
         phrase.innerHTML = '';
-        overlay.style.display = 'block';
+        overlay.style.display = 'flex';
         overlay.className = 'lose';
         overlay.children[0].textContent = "Good try!";
     }
